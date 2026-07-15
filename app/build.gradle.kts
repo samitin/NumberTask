@@ -13,7 +13,7 @@ android {
     defaultConfig {
         applicationId = "com.example.numberstesttask"
         minSdk = 24
-        targetSdk = 37
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -26,6 +26,9 @@ android {
                 enable = false
             }
         }
+    }
+    buildFeatures {
+        viewBinding = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

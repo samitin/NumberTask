@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailsTextView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+    android:text="Some details of the number\nActivating Activity 'com.example.numberstesttask.main.presentation.MainActivity'  on device emulator-5554
+$ adb shell am start -n com.example.numberstesttask/com.example.numberstesttask.main.presentation.MainActivity -a android.intent.action.MAIN -c android.intent.category.LAUNCHER --splashscreen-show-icon
+Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.example.numberstesttask/.main.presentation.MainActivity }" />
+
