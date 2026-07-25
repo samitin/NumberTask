@@ -1,16 +1,10 @@
-package com.example.numberstesttask
+package com.example.numberstesttask.numbers.presentation
 
+import com.example.numberstesttask.numbers.domain.BaseTest
 import com.example.numberstesttask.numbers.domain.NumberFact
 import com.example.numberstesttask.numbers.domain.NumberUiMapper
 import com.example.numberstesttask.numbers.domain.NumbersInteractor
 import com.example.numberstesttask.numbers.domain.NumbersResult
-import com.example.numberstesttask.numbers.presentation.DispatchersList
-import com.example.numberstesttask.numbers.presentation.HandleNumbersRequest
-import com.example.numberstesttask.numbers.presentation.ManageResources
-import com.example.numberstesttask.numbers.presentation.NumbersResultMapper
-import com.example.numberstesttask.numbers.presentation.NumberUi
-import com.example.numberstesttask.numbers.presentation.NumbersViewModel
-import com.example.numberstesttask.numbers.presentation.UiState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.newSingleThreadContext

@@ -1,4 +1,4 @@
-package com.example.numberstesttask
+package com.example.numberstesttask.numbers.domain
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer

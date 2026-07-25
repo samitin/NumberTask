@@ -1,7 +1,5 @@
-package com.example.numberstesttask
+package com.example.numberstesttask.numbers.domain
 
-import com.example.numberstesttask.numbers.domain.NumberFact
-import com.example.numberstesttask.numbers.domain.NumberUiMapper
 import com.example.numberstesttask.numbers.presentation.NumbersResultMapper
 import com.example.numberstesttask.numbers.presentation.NumberUi
 import com.example.numberstesttask.numbers.presentation.UiState

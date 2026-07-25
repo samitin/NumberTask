@@ -1,12 +1,5 @@
-package com.example.numberstesttask
+package com.example.numberstesttask.numbers.domain
 
-import com.example.numberstesttask.numbers.domain.HandleError
-import com.example.numberstesttask.numbers.domain.HandleRequest
-import com.example.numberstesttask.numbers.domain.NoInternetConnectionException
-import com.example.numberstesttask.numbers.domain.NumberFact
-import com.example.numberstesttask.numbers.domain.NumbersInteractor
-import com.example.numberstesttask.numbers.domain.NumbersRepository
-import com.example.numberstesttask.numbers.domain.NumbersResult
 import com.example.numberstesttask.numbers.presentation.ManageResources
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.runBlocking
