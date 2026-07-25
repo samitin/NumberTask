@@ -3,10 +3,10 @@ package com.example.numberstesttask.numbers.domain
 import com.example.numberstesttask.R
 import com.example.numberstesttask.numbers.presentation.ManageResources
 
-interface HandleError {
-    fun handle(e : Exception): String
+interface HandleError <T>{
+    fun handle(e : Exception) : T
 
-    class Base(private val manageResources: ManageResources) : HandleError {
+    class Base(private val manageResources: ManageResources) : HandleError <String>{
         override fun handle(e: Exception): String =
             when(e){
                 is NoInternetConnectionException -> manageResources.string(R.string.no_connection_message)
