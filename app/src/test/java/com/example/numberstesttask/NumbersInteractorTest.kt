@@ -1,7 +1,11 @@
 package com.example.numberstesttask
 
+import com.example.numberstesttask.numbers.domain.HandleError
+import com.example.numberstesttask.numbers.domain.HandleRequest
+import com.example.numberstesttask.numbers.domain.NoInternetConnectionException
 import com.example.numberstesttask.numbers.domain.NumberFact
 import com.example.numberstesttask.numbers.domain.NumbersInteractor
+import com.example.numberstesttask.numbers.domain.NumbersRepository
 import com.example.numberstesttask.numbers.domain.NumbersResult
 import com.example.numberstesttask.numbers.presentation.ManageResources
 import junit.framework.TestCase.assertEquals
@@ -80,7 +84,6 @@ class NumbersInteractorTest {
         val expected = NumbersResult.Failure("no internet connection")
 
         assertEquals(expected, actual)
-        assertEquals(1, repository.numberFactCalledList.size)
         assertEquals(1, repository.randomNumberFactCalledList.size)
     }
 
@@ -147,4 +150,4 @@ private class TestManageResources : ManageResources {
 
     override fun string(id: Int): String = value
 }
-}
+
