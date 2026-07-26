@@ -1,7 +1,7 @@
-package com.example.numberstesttask.numbers.data
+package com.example.numberstesttask.numbers.data.cloud
 
-import com.example.numberstesttask.numbers.data.cloud.NumbersService
-import com.example.numberstesttask.numbers.presentation.FetchNumbers
+import com.example.numberstesttask.numbers.data.cache.FetchNumber
+import com.example.numberstesttask.numbers.data.NumberData
 
 interface NumbersCloudDataSource : FetchNumber {
 
@@ -15,14 +15,14 @@ interface NumbersCloudDataSource : FetchNumber {
             headers.find { (key,_) ->
                 key == RANDOM_API_HEADER
             }?.let { (_,value) ->
-                return NumberData(value,body)
+                return NumberData(value, body)
             }
             throw IllegalStateException("service unavailable")
         }
 
         override suspend fun number(number: String): NumberData {
             val fact = service.fact(number)
-            return NumberData(number,fact)
+            return NumberData(number, fact)
         }
 
         companion object{
