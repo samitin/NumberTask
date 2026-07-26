@@ -16,7 +16,7 @@ class NumbersResultMapper(
                     numbersCommunications.showList(list.map { it.map(numberUiMapper) })
                 UiState.Success()
             }else
-                UiState.Error(errorMessage)
+                UiState.ShowError(errorMessage)
         )
     }
 }

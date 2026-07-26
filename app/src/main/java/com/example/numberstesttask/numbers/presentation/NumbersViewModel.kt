@@ -13,9 +13,9 @@ class NumbersViewModel(
     private val manageResources: ManageResources,
     private val communications : NumbersCommunications,
     private val interactor : NumbersInteractor,
-) : ObserveNumbers , FetchNumbers,ViewModel(){
+) : ObserveNumbers , FetchNumbers,ViewModel(), ClearError{
 
-    override fun observeProgress(owner: LifecycleOwner, observer: Observer<Boolean>) =
+    override fun observeProgress(owner: LifecycleOwner, observer: Observer<Int>) =
         communications.observeProgress(owner, observer)
     override fun observeState(owner: LifecycleOwner, observer: Observer<UiState>) =
         communications.observeState(owner, observer)
@@ -37,13 +37,13 @@ class NumbersViewModel(
 
     override fun fetchNumberFact(number: String) {
         if (number.isEmpty())
-            communications.showState(UiState.Error(manageResources.string(R.string.empty_number_error_message)))
+            communications.showState(UiState.ShowError(manageResources.string(R.string.empty_number_error_message)))
         else
             handleResult.handle(viewModelScope) {
                 interactor.factAboutNumber(number)
             }
     }
-
+    override fun clearError() = communications.showState(UiState.ClearError())
 }
 interface FetchNumbers{
     /**
@@ -59,4 +59,7 @@ interface FetchNumbers{
      * Получить факт о числе
      */
     fun fetchNumberFact(number : String)
+}
+interface ClearError {
+    fun clearError()
 }

@@ -4,7 +4,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 
 interface NumbersCommunications : ObserveNumbers {
-    fun showProgress(show: Boolean)
+    fun showProgress(show: Int)
     fun showState(state: UiState)
     fun showList(list: List<NumberUi>)
 
@@ -13,7 +13,7 @@ interface NumbersCommunications : ObserveNumbers {
         private val numbersState: NumbersStateCommunication,
         private val numbersList: NumbersListCommunication
     ) : NumbersCommunications{
-        override fun showProgress(show: Boolean) =
+        override fun showProgress(show: Int) =
             progress.map(show)
 
 
@@ -21,7 +21,7 @@ interface NumbersCommunications : ObserveNumbers {
 
         override fun showList(list: List<NumberUi>) = numbersList.map(list)
 
-        override fun observeProgress(owner: LifecycleOwner, observer: Observer<Boolean>) =
+        override fun observeProgress(owner: LifecycleOwner, observer: Observer<Int>) =
             progress.observe(owner,observer)
 
         override fun observeState(owner: LifecycleOwner, observer: Observer<UiState>) =
@@ -32,15 +32,15 @@ interface NumbersCommunications : ObserveNumbers {
     }
 }
 interface ObserveNumbers{
-    fun observeProgress(owner: LifecycleOwner,observer: Observer<Boolean>)
+    fun observeProgress(owner: LifecycleOwner,observer: Observer<Int>)
 
     fun observeState(owner: LifecycleOwner,observer: Observer<UiState>)
 
     fun observeList(owner: LifecycleOwner,observer: Observer<List<NumberUi>>)
 }
 
-interface ProgressCommunication : Communication.Mutable<Boolean>{
-    class Base : Communication.Post<Boolean>(), ProgressCommunication
+interface ProgressCommunication : Communication.Mutable<Int>{
+    class Base : Communication.Post<Int>(), ProgressCommunication
 }
 
 interface NumbersStateCommunication: Communication.Mutable<UiState>{

@@ -2,19 +2,26 @@ package com.example.numberstesttask.numbers.presentation
 
 import android.os.Message
 import com.example.numberstesttask.numbers.domain.NumberFact
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 sealed class UiState {
-    interface Mapper<T> {
-        fun map(message: String): T
+
+    abstract fun apply(inputLayout: TextInputLayout, textInputEditText: TextInputEditText)
+    class Success : UiState() {
+        override fun apply(inputLayout: TextInputLayout, textInputEditText: TextInputEditText) = textInputEditText.setText("")
+    }
+    abstract class AbstractError(
+        private val message: String,
+        private val errorEnabled: Boolean
+    ) : UiState() {
+
+        override fun apply(inputLayout: TextInputLayout, textInputEditText: TextInputEditText) = with(inputLayout) {
+            isErrorEnabled = errorEnabled
+            error = message
+        }
     }
 
-    abstract fun <T> map(mapper: Mapper<T>): T
-
-    class Success(): UiState() {
-        override fun <T> map(mapper: Mapper<T>): T = mapper.map("")
-    }
-
-    data class Error(private val errorMassage: String): UiState() {
-        override fun <T> map(mapper: Mapper<T>): T = mapper.map(errorMassage)
-    }
+    data class ShowError(private val text: String) : AbstractError(text, true)
+    class ClearError : AbstractError("", false)
 }
