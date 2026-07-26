@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -46,6 +47,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
 
+    //retrofit
     implementation("com.squareup.retrofit2:retrofit:3.0.0")
     implementation("com.squareup.retrofit2:converter-scalars:3.0.0")
     implementation("com.squareup.okhttp3:logging-interceptor:5.4.0")
@@ -55,4 +57,16 @@ dependencies {
 
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
+
+    //room
+    // Базовая библиотека Room
+    implementation("androidx.room:room-runtime:2.8.4")
+    // Компилятор Room (для KSP)
+    ksp("androidx.room:room-compiler:2.8.4")
+    // --- ОПЦИОНАЛЬНО, НО ОЧЕНЬ РЕКОМЕНДУЕТСЯ ---
+    // Для удобной работы с Kotlin Coroutines (suspend-функции, Flow)
+    implementation("androidx.room:room-ktx:2.8.4") //[reference:8]
+    // --- ДЛЯ ТЕСТИРОВАНИЯ (опционально) ---
+    testImplementation("androidx.room:room-testing:2.8.4") //[reference:9]
+
 }
