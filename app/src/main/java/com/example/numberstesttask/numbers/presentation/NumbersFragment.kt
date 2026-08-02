@@ -12,17 +12,23 @@ import com.example.numberstesttask.R
 import com.example.numberstesttask.main.presentation.ShowFragment
 import com.example.numberstesttask.databinding.FragmentNumbersBinding
 import com.example.numberstesttask.details.presentation.DetailsFragment
+import com.example.numberstesttask.main.sl.ProvideViewModel
 
 class NumbersFragment : Fragment() {
 
     private var _binding : FragmentNumbersBinding ?= null
     private val binding : FragmentNumbersBinding get() = _binding!!
     private var showFragment : ShowFragment = ShowFragment.Empty
-    private lateinit var viewModel: NumbersViewModel //todo init viewModel
+    private lateinit var viewModel: NumbersViewModel
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         showFragment = requireActivity() as ShowFragment
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = (requireActivity() as ProvideViewModel).viewModel(NumbersViewModel::class.java,this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -39,9 +45,10 @@ class NumbersFragment : Fragment() {
             val fragment = DetailsFragment()
             showFragment.show(fragment,true)
         }
+        val mapper = DetailsUi()
         val adapter = NumbersAdapter(object : ClickListener {
             override fun click(item: NumberUi) {
-                //todo move to next screens howFragment.show(DetailsFragment.newInstance("some information about the random number hardcoded"))
+                showFragment.show(DetailsFragment.newInstance(item.map(mapper)),true)
             }
         })
         binding.historyRecyclerView.adapter = adapter

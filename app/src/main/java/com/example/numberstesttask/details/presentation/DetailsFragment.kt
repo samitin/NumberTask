@@ -19,9 +19,15 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.detailsTextView.text = arguments?.getString("key")
 
     }
+    companion object{
+        fun newInstance(text: String): DetailsFragment = DetailsFragment().apply{
+            arguments?.putString("key",text)
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

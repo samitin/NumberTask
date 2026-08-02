@@ -4,10 +4,13 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelStoreOwner
 import com.example.numberstesttask.R
+import com.example.numberstesttask.main.sl.ProvideViewModel
 import com.example.numberstesttask.numbers.presentation.NumbersFragment
 
-class MainActivity : AppCompatActivity() , ShowFragment{
+class MainActivity : AppCompatActivity() , ShowFragment, ProvideViewModel{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,6 +29,10 @@ class MainActivity : AppCompatActivity() , ShowFragment{
             transaction.replace(R.id.container, fragment)
         transaction.commit()
     }
+
+    override fun <T : ViewModel> viewModel(clasz: Class<T>, owner: ViewModelStoreOwner): T =
+        (application as ProvideViewModel).viewModel(clasz,this)
+
 }
 interface ShowFragment{
     fun show(fragment: Fragment,add : Boolean)

@@ -20,4 +20,11 @@ interface CacheModule {
 
         override fun provideDataBase(): NumbersDataBase = database
     }
+
+    class Mock(private val context : Context) : CacheModule {
+        private val dataBase by lazy {
+            Room.inMemoryDatabaseBuilder(context, NumbersDataBase::class.java).build()
+        }
+        override fun provideDataBase(): NumbersDataBase = dataBase
+    }
 }
